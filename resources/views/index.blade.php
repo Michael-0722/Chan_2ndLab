@@ -17,14 +17,19 @@
             <th>Specialization</th>
             <th>Actions</th>
         </tr>
-        @foreach ($trainer as $trainer)
+        @foreach ($trainer as $trainers)
         <tr>
-            <td>{{ $trainer->name }}</td>
-            <td>{{ $trainer->email }}</td>
-            <td>{{ $trainer->specialization }}</td>
+            <td>{{ $trainers->name }}</td>
+            <td>{{ $trainers->email }}</td>
+            <td>{{ $trainers->specialization }}</td>
             <td>
-                <a href="{{ route('trainer-registrations.show', $trainer->id) }}">Show</a>
-                <a href="{{ route('trainer-registrations.edit', $trainer->id) }}">Edit</a>
+                <a href="{{ route('trainer-registrations.show', $trainers->id) }}">Show</a>
+                <a href="{{ route('trainer-registrations.edit', $trainers->id) }}">Edit</a>
+                <form action="{{ route('trainer-registrations.destroy', $trainers->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                </form>
             </td>
         </tr>
             

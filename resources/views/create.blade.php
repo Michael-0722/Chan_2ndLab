@@ -15,14 +15,14 @@
         <input type="text" required name="name"><br><br>
 
         <label>Email: </label><br>
-        <input type="text" required name="email"><br><br>
+        <input type="email" required name="email"><br><br>
 
         <label>Specialization: </label><br>
         <select name="specialization">
-            <option value="1">Sports</option>
-            <option value="2">Fitness</option>
-            <option value="3">Yoga</option>
-            <option value="4">Knowledge/Academics</option>
+            <option value="Sports">Sports</option>
+            <option value="Fitness">Fitness</option>
+            <option value="Yoga">Yoga</option>
+            <option value="Knowledge/Academics">Knowledge/Academics</option>
         </select><br><br>
 
         <button type="submit">Submit</button>

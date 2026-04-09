@@ -30,14 +30,16 @@ class TrainerRegistrationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:100',
-            'email' => 'required|email|max:50|unique:trainer_registrations,email',
-            'specialization' => 'required'
-        ]);
+        'name' => 'required|max:100',
+        'email' => 'required|email|max:50|unique:trainer_registrations,email',
+        'specialization' => 'required'
+    ]);
 
-        TrainerRegistration::create($request->all());
+    TrainerRegistration::create($request->all());
 
-        return redirect()->route('index')->with('success', 'Trainer registered successfully.');
+    return redirect()->route('trainer-registrations.index')
+        ->with('success', 'Trainer registered successfully.');
+
     }
 
     /**
@@ -61,15 +63,17 @@ class TrainerRegistrationController extends Controller
      */
     public function update(Request $request, TrainerRegistration $trainer)
     {
-            $request->validate([
-            'name' => 'required|max:100',
-            'email' => 'required|email|max:50|unique:trainer_registrations,email',
-            'specialization' => 'required'
-        ]);
+        $request->validate([
+        'name' => 'required|max:100',
+        'email' => 'required|email|max:50|unique:trainer_registrations,email,' . $trainer->id,
+        'specialization' => 'required'
+    ]);
 
-        $trainer->update($request->all());
+    $trainer->update($request->all());
 
-        return redirect()->route('index')->with('success', 'Trainer updated successfully.');
+    return redirect()->route('trainer-registrations.index')
+        ->with('success', 'Trainer updated successfully.');
+
     }
 
     /**
@@ -79,6 +83,6 @@ class TrainerRegistrationController extends Controller
     {
         $trainer->delete();
 
-        return redirect()->route('index')->with('success', 'Trainer deleted successfully.');
+        return redirect()->route('trainer-registrations.index')->with('success', 'Trainer deleted successfully.');
     }
 }
